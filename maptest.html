@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+html, body, #map-canvas { height: 100%; width: 100%; margin: 0; padding: 0;}
+</style>
+<script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKVCkaoBI4uPY9I5OJXy0656OaYdCX_KE&libraries=geometry">
+</script>
+<script type="text/javascript">
+function initialize() {
+    var mapOptions = {
+        center: { lat: 29.457570, lng: -98.559841},
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.HYBRID
+    };
+    var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+    var targetarea_c = [
+        new google.maps.LatLng(29.466408, -98.571184), //Quill & Hillcrest
+        new google.maps.LatLng(29.466568, -98.566865), //Quil Park
+        new google.maps.LatLng(29.467885, -98.566017), //Quill & Donaldson
+        new google.maps.LatLng(29.465727, -98.560985), //Donaldson & Zacry
+        new google.maps.LatLng(29.464700, -98.550986), //Donaldson & Evelyn
+        new google.maps.LatLng(29.464849, -98.549259), //Donaldson & St. Cloud
+        new google.maps.LatLng(29.453920, -98.550643), // St. Cloud & Bandera
+        new google.maps.LatLng(29.452971, -98.551142), // St. Cloud & Wake Forest
+        new google.maps.LatLng(29.447763, -98.551769),  //Culebra & McMullen
+        new google.maps.LatLng(29.448632, -98.560910),  //Culebra & Santa Maria
+        new google.maps.LatLng(29.454966, -98.560148),  //Fordham & Santa Maria
+        new google.maps.LatLng(29.455788, -98.568302),  //Fordham & 36th
+        new google.maps.LatLng(29.458030, -98.568066),  //36th & Woodland
+        new google.maps.LatLng(29.462458, -98.569053),  //36th
+        new google.maps.LatLng(29.464046, -98.570770)  //Hillcrest & Willard
+    ];
+    targetarea = new google.maps.Polygon({
+        paths: targetarea_c,
+        strokeColor: '#FFFF55',
+        strokeOpacity: 0.6,
+        strokeWeight: 3,
+        fillColor: '#FFFF55',
+        fillOpacity: 0.15
+    });
+    targetarea.setMap(map);
+
+    var avoid1c = [  // Apts accross from Cheryl West
+        new google.maps.LatLng(29.461907, -98.568810), //36th & Cheryl
+        new google.maps.LatLng(29.462303, -98.566119), // Cheryl
+        new google.maps.LatLng(29.460651, -98.565932), // SE Corner
+        new google.maps.LatLng(29.460541, -98.568681) // SW Corner
+    ];
+    avoid1 = new google.maps.Polygon({
+        paths: avoid1c,
+        strokeColor: '#FF5555',
+        strokeOpacity: 0.7,
+        strokeWeight: 2,
+        fillColor: '#FF5555',
+        fillOpacity: 0.35
+    });
+    avoid1.setMap(map);
+    
+    var complete5c = [  // Woodlawn
+        new google.maps.LatLng(29.458553, -98.568079), //Big Star
+        new google.maps.LatLng(29.458497, -98.567403),
+        new google.maps.LatLng(29.458913, -98.567344),
+        new google.maps.LatLng(29.458965, -98.566170),
+        new google.maps.LatLng(29.458679, -98.561192),
+        new google.maps.LatLng(29.458501, -98.558939),
+        //new google.maps.LatLng(29.458040, -98.561234), //Dumas Ln
+        new google.maps.LatLng(29.459057, -98.558883), 
+        new google.maps.LatLng(29.458922, -98.557911),
+        new google.maps.LatLng(29.458255, -98.557923), //Embassy Dr
+        new google.maps.LatLng(29.457895, -98.556898), //Embassy Dr
+        new google.maps.LatLng(29.457019, -98.557001),
+        new google.maps.LatLng(29.456877, -98.555898), //Woodlawn & Duke
+        new google.maps.LatLng(29.456475, -98.555941), //Duke
+        new google.maps.LatLng(29.457595, -98.568105)  // 36th
+    ];
+    complete5 = new google.maps.Polygon({
+        paths: complete5c,
+        strokeColor: '#55FF55',
+        strokeOpacity: 0.7,
+        strokeWeight: 2,
+        fillColor: '#55FF55',
+        fillOpacity: 0.35
+    });
+    complete5.setMap(map);
+
+    var complete4c = [  // Cheryl West Apartments
+        new google.maps.LatLng(29.463613, -98.568913),
+        new google.maps.LatLng(29.463222, -98.566327),
+        new google.maps.LatLng(29.462303, -98.566184),
+        new google.maps.LatLng(29.462259, -98.567166),
+        new google.maps.LatLng(29.461911, -98.568781)
+    ];
+    complete4 = new google.maps.Polygon({
+        paths: complete4c,
+        strokeColor: '#55FF55',
+        strokeOpacity: 0.7,
+        strokeWeight: 2,
+        fillColor: '#55FF55',
+        fillOpacity: 0.35
+    });
+    complete4.setMap(map);
+
+    var complete3c = [  //28 Mar - Ben and Lauren
+        new google.maps.LatLng(29.450433, -98.560715),
+        new google.maps.LatLng(29.450302, -98.559717), // Bradford
+        new google.maps.LatLng(29.449447, -98.558779), // Bradford
+        new google.maps.LatLng(29.449176, -98.556606), // Stop1
+        new google.maps.LatLng(29.448751, -98.556633), // Stop1
+        new google.maps.LatLng(29.448620, -98.554836), // Brandford
+        new google.maps.LatLng(29.448961, -98.554063), // Tulane & Bradford
+        new google.maps.LatLng(29.448634, -98.551665), // Tulane & McMullen
+        new google.maps.LatLng(29.448186, -98.551724), // 
+        new google.maps.LatLng(29.448293, -98.554358), // Tally 
+        new google.maps.LatLng(29.448013, -98.554374), // Tally & Culebra
+        new google.maps.LatLng(29.448632, -98.560910)  //Culebra & Santa Maria
+    ];
+    complete3 = new google.maps.Polygon({
+        paths: complete3c,
+        strokeColor: '#55FF55',
+        strokeOpacity: 0.7,
+        strokeWeight: 2,
+        fillColor: '#55FF55',
+        //editable: true,
+        fillOpacity: 0.35
+    });
+    complete3.setMap(map);
+
+    var complete2c = [  //28 Mar - Ryan and Joey
+        new google.maps.LatLng(29.453426, -98.560351), //Santa Maria
+        new google.maps.LatLng(29.452516, -98.551193), // McMullen
+        new google.maps.LatLng(29.450374, -98.551465), // McMullen & TX
+        new google.maps.LatLng(29.450709, -98.554944), // TX and Tulane
+        new google.maps.LatLng(29.451148, -98.555002), // Tulane
+        new google.maps.LatLng(29.451064, -98.555946), // 
+        new google.maps.LatLng(29.451092, -98.558253), //  Purdue
+        new google.maps.LatLng(29.450335, -98.559723), // 
+        new google.maps.LatLng(29.450485, -98.560717)  //Santa Maria
+    ];
+    complete2 = new google.maps.Polygon({
+        paths: complete2c,
+        strokeColor: '#55FF55',
+        strokeOpacity: 0.7,
+        strokeWeight: 2,
+        fillColor: '#55FF55',
+        fillOpacity: 0.35
+    });
+    complete2.setMap(map);
+
+    var complete1c = [  // Louis and Anthony
+        new google.maps.LatLng(29.456815, -98.559908),
+        new google.maps.LatLng(29.456460, -98.556014),
+        new google.maps.LatLng(29.455245, -98.556067),
+        new google.maps.LatLng(29.454446, -98.555356), //Wake Forest and Duke
+        new google.maps.LatLng(29.454259, -98.556783),
+        new google.maps.LatLng(29.453689, -98.558231), //Wake Forest and Purdue
+        new google.maps.LatLng(29.453866, -98.560259) //Wake Forest and Santa Maria
+    ];
+    complete1 = new google.maps.Polygon({
+        paths: complete1c,
+        strokeColor: '#55FF55',
+        strokeOpacity: 0.7,
+        strokeWeight: 2,
+        fillColor: '#55FF55',
+        fillOpacity: 0.35
+    });
+    complete1.setMap(map);
+
+    var markerCBC = new google.maps.Marker({
+        position: new google.maps.LatLng(29.459990, -98.560104),
+        map: map,
+        title: 'Cheryl Bible Chapel'
+    });
+
+    var markerCherylWest = new google.maps.Marker({
+        position: new google.maps.LatLng(29.462615, -98.567211),
+        map: map,
+        title: 'Cheryl West Apts'
+    });
+    var myarea = google.maps.geometry.spherical.computeArea(targetarea.getPath());
+    //alert(myarea);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+<body>
+<div id="map-canvas"></div>
+</body>
+</html>
